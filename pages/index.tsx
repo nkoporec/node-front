@@ -4,6 +4,7 @@ import { query } from "lib/drupal"
 import { formatDate } from "lib/utils"
 import { Layout } from "components/layout"
 import { ReleaseNote } from "types"
+import { useState } from 'react';
 
 
 interface IndexPageProps {
@@ -11,6 +12,9 @@ interface IndexPageProps {
 }
 
 export default function IndexPage({ nodes }: IndexPageProps) {
+  const initialData = nodes;
+  const [releaseNotes, setReleaseNotes] = useState(nodes)
+
   return (
     <Layout>
       <Head>
@@ -25,10 +29,10 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         <div className="flex">
             <div className="block mr-10">
                 <p>Release type</p>
-                <select name="type" id="type">
+                <select name="type" id="type" onChange={handleTypeChange}>
                   <option value="all" selected>All</option>
-                  <option value="security">Security update</option>
-                  <option value="feature">New Feature</option>
+                  <option value="Security update">Security update</option>
+                  <option value="New feature">New Feature</option>
                 </select>
             </div>
             <div className="block">
@@ -41,8 +45,8 @@ export default function IndexPage({ nodes }: IndexPageProps) {
             </div>
         </div>
 
-        {nodes?.length ? (
-          nodes.map((node) => (
+        {releaseNotes?.length ? (
+          releaseNotes.map((node) => (
               <div className="mt-10 group relative mx-auto w-full overflow-hidden rounded-[16px] bg-gray-300 p-[1px] transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500">
                 <div className="group-hover:animate-spin-slow invisible absolute -top-40 -bottom-40 left-10 right-10 bg-gradient-to-r from-transparent via-white/90 to-transparent group-hover:visible"></div>
                 <div className="relative rounded-[15px] bg-white p-6">
@@ -52,7 +56,7 @@ export default function IndexPage({ nodes }: IndexPageProps) {
                     <p className="text-xs text-slate-800"> <span className="font-semibold">{formatDate(node.releaseDate)}</span></p>
                     <p className="text-xs text-slate-800">Type: <span className="font-semibold">{node.releaseType}</span></p>
                     <p className="text-xs text-slate-800">Version: <span className="font-semibold">{node.version}</span></p>
-                    <p className="text-xs text-slate-800">Product: <span className="font-semibold">{node.product}</span></p>
+                    <p className="text-xs text-slate-800">Product: <span className="font-semibold">Product: {node.product}</span></p>
                     <div className="font-md text-slate-500" dangerouslySetInnerHTML={{ __html: node.text.processed }}></div>
                   </div>
                 </div>
@@ -64,6 +68,21 @@ export default function IndexPage({ nodes }: IndexPageProps) {
       </div>
     </Layout>
   )
+
+  function handleTypeChange(event) {
+    let type = event.target.value;
+    
+    if (type == "all") {
+        setReleaseNotes(initialData);
+        return;
+    }
+
+    let filtered_nodes = nodes.filter(function(item){ 
+        return item.releaseType == type;
+    });
+
+    setReleaseNotes(filtered_nodes);
+  }
 }
 
 export async function getServerSideProps() {
