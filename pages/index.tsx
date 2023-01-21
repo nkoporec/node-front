@@ -41,8 +41,8 @@ export default function IndexPage({ nodes }: IndexPageProps) {
                     <p className="mb-2 ml-5">Product type</p>
                     <select name="type" className="rounded-[15px] text-md bg-gray-100 p-2" id="type" onChange={filterByProduct}>
                       <option value="all">All</option>
-                      <option value="Security update">Security update</option>
-                      <option value="New feature">New Feature</option>
+                      <option value="pmd">Pmd</option>
+                      <option value="composer_lsp">Composer Lsp</option>
                     </select>
                 </div>
             </div>
