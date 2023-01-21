@@ -7,8 +7,9 @@ export function Layout({ children }) {
         <header>
           <div className="container flex items-center justify-between py-6 mx-auto">
             <Link href="/" className="text-2xl font-semibold no-underline">
-              Nodes.
+              Node.
             </Link>
+            <p className="font-semibold text-sm">We make Drupal happen.</p>
           </div>
         </header>
         <main className="container py-10 mx-auto">{children}</main>

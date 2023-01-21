@@ -24,7 +24,6 @@ type QueryJsonResponse<DataType> = {
 }
 
 // This is a wrapper around drupal.fetch.
-// Acts as a query helper.
 export async function query<DataType>(payload: QueryPayload) {
   const response = await drupal.fetch(graphqlEndpoint.toString(), {
     method: "POST",
