@@ -1,11 +1,19 @@
-# GraphQL Starter
+# Node
 
-A next-drupal starter for building your site with Next.js and GraphQL.
+A Nextjs frontend to be used with a Drupal backend, located at [Node](https://github.com/nkoporec/node))
 
 ## How to use
 
-`npx create-next-app -e https://github.com/chapter-three/next-drupal-graphql-starter`
+1. Clone the repository
+2. Run `npm install`
+3. You need to set up authentication client id and secret in Drupal, see docs at [Nextjs-Drupal Authentication](https://next-drupal.org/learn/graphql/configure-authentication)
+4. Copy `.env.example` to `.env`
+  3.1. Set  `NEXT_PUBLIC_DRUPAL_BASE_URL=http://node.ddev.site`
+  3.2. Set  `NEXT_IMAGE_DOMAIN=node.ddev.site`
+  3.3. Set  `DRUPAL_CLIENT_ID={CLIENT_ID}`
+  3.3. Set  `DRUPAL_CLIENT_SECRET={CLIENT_SECRET}`
+5. Run `npm run dev`
 
 ## Documentation
 
-See https://next-drupal.org
+See https://next-drupal.org or https://www.chapterthree.com/blog/nextjs-drupal-and-graphql-how-to-use-graphql-next-drupal
