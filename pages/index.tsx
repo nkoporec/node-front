@@ -58,7 +58,7 @@ export default function IndexPage({ nodes }: IndexPageProps) {
                     <p className="text-xs text-slate-800"> <span className="font-semibold">{formatDate(node.releaseDate)}</span></p>
                     <p className="text-xs text-slate-800">Type: <span className="font-semibold">{node.releaseType}</span></p>
                     <p className="text-xs text-slate-800">Version: <span className="font-semibold">{node.version}</span></p>
-                    <p className="text-xs text-slate-800">Product: <span className="font-semibold">Product: {node.product}</span></p>
+                    <p className="text-xs text-slate-800">Product: <span className="font-semibold">{node.product}</span></p>
                     <div className="font-md text-slate-500" dangerouslySetInnerHTML={{ __html: node.text.processed }}></div>
                   </div>
                 </div>
